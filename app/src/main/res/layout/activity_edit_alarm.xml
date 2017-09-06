@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.administrator.alarmapp.EditAlarm"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/time_edit_activity"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Time"
+            android:fontFamily="sans-serif"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:paddingTop="16dp"
+            android:paddingLeft="16dp"
+            />
+
+        <TextView
+            android:id="@+id/time_edit_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@color/Red"
+            tools:text="15:38" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/repeat_edit_activity"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Repeat"
+            android:fontFamily="sans-serif"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:paddingTop="16dp"
+            android:paddingLeft="16dp"
+            />
+        <TextView
+            android:id="@+id/day_edit_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Mon,Tue,Wed"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@color/Red"
+            android:paddingLeft="16dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ringtone_edit_activity"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Rington"
+            android:fontFamily="sans-serif"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:paddingTop="16dp"
+            android:paddingLeft="16dp"
+            />
+        <TextView
+            android:id="@+id/ringtone_edit_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@color/Red"
+            tools:text="Ring"
+            android:paddingLeft="16dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/vibrate_edit_activity"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Vibrate"
+            android:fontFamily="sans-serif"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:paddingLeft="16dp"
+            android:layout_gravity="center"
+            />
+        <CheckBox
+            android:id="@+id/checkbox_vibrate"
+            android:layout_weight="0.98"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/method_edit_activity"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Alarm off method"
+            android:fontFamily="sans-serif"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:paddingTop="16dp"
+            android:paddingLeft="16dp"
+            />
+        <TextView
+            android:id="@+id/method_edit_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@color/Red"
+            tools:text="How to turn off the alarm"
+            android:paddingLeft="16dp"/>
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>

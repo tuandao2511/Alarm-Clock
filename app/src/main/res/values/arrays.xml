@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="array_days_optical">
+        <item>@string/monday</item>
+        <item>@string/tuesday</item>
+        <item>@string/wednesday</item>
+        <item>@string/thursday</item>
+        <item>@string/friday</item>
+        <item>@string/saturday</item>
+        <item>@string/sunday</item>
+    </string-array>
+
+    <string-array name="array_rington_optical">
+        <item>Default</item>
+        <item>Rington</item>
+        <item>Silent</item>
+
+    </string-array>
+
+    <string-array name="array_method_optical">
+        <item>Default</item>
+        <item>Game</item>
+    </string-array>
+</resources>
