@@ -29,14 +29,14 @@ public class AlarmActivity extends AppCompatActivity implements LoaderManager.Lo
     ListView alarmListView ;
     AlarmCursorAdapter alarmCursorAdapter ;
     AlarmDbHelper mCreateDb;
-    public final static String LOG_TAG = AlarmActivity.class.getName();
+    private final static String LOG_TAG = AlarmActivity.class.getName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alarm);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -69,12 +69,7 @@ public class AlarmActivity extends AppCompatActivity implements LoaderManager.Lo
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_alarm, menu);
-        return true;
-    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -84,9 +79,6 @@ public class AlarmActivity extends AppCompatActivity implements LoaderManager.Lo
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_save1) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }

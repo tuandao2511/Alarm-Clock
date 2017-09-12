@@ -7,7 +7,7 @@
     <item
         android:id="@+id/action_save"
         android:title="Save"
-        android:icon="@drawable/ic_done"
+        android:icon="@drawable/ic_action_check_1"
         app:showAsAction="always"
         />
 

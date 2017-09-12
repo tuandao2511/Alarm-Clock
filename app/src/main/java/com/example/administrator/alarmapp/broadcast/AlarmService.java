@@ -11,11 +11,13 @@ import android.database.Cursor;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.os.Vibrator;
 import android.support.annotation.IntDef;
 
 import com.example.administrator.alarmapp.AlarmOffMethod.AlarmOffDefault;
+import com.example.administrator.alarmapp.AlarmOffMethod.StaticWakeLock;
 import com.example.administrator.alarmapp.R;
 import com.example.administrator.alarmapp.database.AlarmContract.AlarmEntry;
 
@@ -25,6 +27,7 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 /**
  * Created by Administrator on 8/4/2017.
@@ -35,6 +38,7 @@ public class AlarmService extends Service {
     private Vibrator vibrator;
     private MediaPlayer mediaPlayer;
     private static final String LOG_TAG = AlarmService.class.getName();
+    NotificationManager manager;
 
     @Nullable
     @Override
@@ -51,43 +55,15 @@ public class AlarmService extends Service {
         Cursor cursor = queryDb(uri);
         if (cursor !=null && cursor.moveToFirst()){
             int columnId = cursor.getColumnIndex(AlarmEntry._ID);
-//            int columnRingtone = cursor.getColumnIndex(AlarmEntry.COLUMN_RINGTONE);
-//            int columnVibrate = cursor.getColumnIndex(AlarmEntry.COLUMN_VIBRATE);
             int id = cursor.getInt(columnId);
-//            String ringtone = cursor.getString(columnRingtone);
-//            int vibrate = cursor.getInt(columnVibrate);
-//            cursor.close();
-//            if (ringtone != null) {
-//                Uri uriRingtone = Uri.parse(ringtone);
-//                MediaPlayer mediaPlayer = new MediaPlayer();
-//                if (vibrate != 0) {
-//                    vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-//                    long[] pattern = {1000, 200, 200, 200};
-//                    vibrator.vibrate(pattern, 0);
-//                }
-//                try {
-//                    mediaPlayer.setVolume(1.0f, 1.0f);
-//                    mediaPlayer.setDataSource(this, uriRingtone);
-//                    mediaPlayer.setAudioStreamType(AudioManager.STREAM_ALARM);
-//                    mediaPlayer.setLooping(true);
-//                    mediaPlayer.prepare();
-//                    mediaPlayer.start();
-//
-//                } catch (IOException e) {
-//                    mediaPlayer.release();
-//                }
-//
-//            }
-
-            Log.v(LOG_TAG,"da implement o day");
-            NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             Intent notifIntent = new Intent(this, AlarmOffDefault.class);
             notifIntent.setData(uri);
             notifIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
             NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
-            builder.setSmallIcon(R.mipmap.ic_launcher);
-            builder.setColor(ContextCompat.getColor(this, R.color.colorPrimary));
+            builder.setSmallIcon(R.drawable.ic_notication);
+            builder.setColor(ContextCompat.getColor(this, R.color.colorAccent));
             builder.setContentTitle(getString(R.string.wake_up));
             builder.setAutoCancel(true);
 
@@ -104,6 +80,7 @@ public class AlarmService extends Service {
                 builder.setFullScreenIntent(resultPendingIntent,true);
             }
             manager.notify(id, builder.build());
+
         }
 
         return START_NOT_STICKY;

@@ -29,10 +29,18 @@
             android:layout_height="wrap_content"
             android:paddingLeft="16dp"
             android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="@color/Red"
+            android:textColor="@color/colorAccent"
             tools:text="15:38" />
-    </LinearLayout>
 
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginLeft="@dimen/cut_view"
+        android:layout_marginRight="@dimen/cut_view"
+        >
+    </View>
     <LinearLayout
         android:id="@+id/repeat_edit_activity"
         android:layout_width="match_parent"
@@ -54,10 +62,17 @@
             android:layout_height="wrap_content"
             tools:text="Mon,Tue,Wed"
             android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="@color/Red"
+            android:textColor="@color/colorAccent"
             android:paddingLeft="16dp"/>
     </LinearLayout>
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginLeft="@dimen/cut_view"
+        android:layout_marginRight="@dimen/cut_view"
+        >
+    </View>
     <LinearLayout
         android:id="@+id/ringtone_edit_activity"
         android:layout_width="match_parent"
@@ -78,11 +93,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="@color/Red"
+            android:textColor="@color/colorAccent"
             tools:text="Ring"
             android:paddingLeft="16dp"/>
     </LinearLayout>
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginLeft="@dimen/cut_view"
+        android:layout_marginRight="@dimen/cut_view"
+        >
+    </View>
     <LinearLayout
         android:id="@+id/vibrate_edit_activity"
         android:layout_width="match_parent"
@@ -101,6 +123,7 @@
             />
         <CheckBox
             android:id="@+id/checkbox_vibrate"
+            android:theme="@style/checkBoxStyle"
             android:layout_weight="0.98"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -109,7 +132,14 @@
             android:focusableInTouchMode="false"
             />
     </LinearLayout>
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginLeft="@dimen/cut_view"
+        android:layout_marginRight="@dimen/cut_view"
+        >
+    </View>
     <LinearLayout
         android:id="@+id/method_edit_activity"
         android:layout_width="match_parent"
@@ -130,11 +160,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="@color/Red"
+            android:textColor="@color/colorAccent"
             tools:text="How to turn off the alarm"
             android:paddingLeft="16dp"/>
     </LinearLayout>
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginLeft="@dimen/cut_view"
+        android:layout_marginRight="@dimen/cut_view"
+        >
+    </View>
 
 
 

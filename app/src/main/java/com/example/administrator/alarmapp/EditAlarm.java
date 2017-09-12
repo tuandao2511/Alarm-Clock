@@ -7,6 +7,7 @@ import android.app.Dialog;
 import android.app.LoaderManager;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.CursorLoader;
@@ -55,6 +56,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import static android.R.attr.id;
 import static android.R.attr.name;
 import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 import static com.example.administrator.alarmapp.R.string.rington;
@@ -68,8 +70,8 @@ public class EditAlarm extends AppCompatActivity implements LoaderManager.Loader
     TextView textAlarmPrompt;
     TimePickerDialog timePickerDialog;
     private final static int RQS_1 = 1;
-    int hour_x;
-    int minute_x;
+    private int hour_x;
+    private int minute_x;
 
     /*set ngay bao thuc*/
     LinearLayout daysLinearLayout;
@@ -77,31 +79,29 @@ public class EditAlarm extends AppCompatActivity implements LoaderManager.Loader
     AlertDialog dialog;
     ArrayList<Integer> selectedItems = new ArrayList();
     String [] items ;
-    boolean [] checkItems;
+    private boolean [] checkItems;
 
     /*set rington */
     LinearLayout ringtonLinearLayout;
     TextView textRington;
-    String [] itemsRington;
+    private String [] itemsRington;
     private final int CODE_REQUEST_RINGTON =1;
-    String chosenRingtone;
-    Uri uriRingtone;
-    Ringtone ringtone;
-    Uri uriDefault;
+    private String chosenRingtone;
+    private Uri uriRingtone;
 
     /*set rung */
     LinearLayout vibrateLinearLayout;
     CheckBox vibrateCheckbox;
-    int checked;
+    private int checked;
 
     /*actived */
-    int mActived;
-    Uri uriIntent;
+    private int mActived;
+    private Uri uriIntent;
     /*tat bao thuc */
     LinearLayout alarmOffMethod;
     TextView alarmOffTextView;
     String [] itemsMethod;
-    int mPosition;
+    private int mPosition;
     private static final int DEFAULT = 0;
     private static final int GAME = 1;
     AlertDialog dialog1;
@@ -134,13 +134,12 @@ public class EditAlarm extends AppCompatActivity implements LoaderManager.Loader
 
         Intent intent = getIntent();
         uriIntent = intent.getData();
-        Log.v(LOG_TAG,"intent la gi " +uriIntent);
 
         if (uriIntent == null) {
             setTitle(getString(R.string.add_alarm));
 
              /* gio mac dinh  */
-
+            setTitle(getString(R.string.set_alarm));
             Calendar calendar = Calendar.getInstance();
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
             textAlarmPrompt.setText(simpleDateFormat.format(calendar.getTime()));
@@ -287,6 +286,53 @@ public class EditAlarm extends AppCompatActivity implements LoaderManager.Loader
                 Toast.makeText(this,getString( R.string.saved_successful),Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this,getString(R.string.saved_fault), Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        /*set thoi gian bao thuc */
+
+        Calendar calendar = Calendar.getInstance();
+        Calendar calNow = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY,hour_x);
+        calendar.set(Calendar.MINUTE,minute_x);
+
+        if (calendar.compareTo(calNow) <=0) {
+            calendar.add(Calendar.DATE,1);
+        }
+
+        Log.v(LOG_TAG,"gio " +calendar.get(Calendar.HOUR_OF_DAY) +" phut " + calendar.get(Calendar.MINUTE));
+        int id = 0;
+        Cursor cursor = getContentResolver().query(AlarmEntry.CONTENT_URI,null,null,null,null);
+        while (cursor.moveToNext()) {
+            if (cursor.isLast()) {
+                int columnID = cursor.getColumnIndex(AlarmEntry._ID);
+                id = cursor.getInt(columnID);
+            }
+        }
+
+
+        Intent myIntent = new Intent(this,AlarmReceiver.class);
+        Uri uri = ContentUris.withAppendedId(AlarmEntry.CONTENT_URI,id);
+        myIntent.setData(uri);
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        int x = id*7;
+        int y = x-7;
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, x, myIntent,0);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),pendingIntent);
+        if (selectedItems.size()!=0) {
+
+            for (int i=0; i<selectedItems.size(); i++) {
+                int dayRepeat = selectedItems.get(i)+1;
+                Log.v(LOG_TAG,"selected item " + dayRepeat);
+                calendar.set(Calendar.DAY_OF_WEEK,dayRepeat);
+
+                if(calendar.getTimeInMillis() < System.currentTimeMillis()) {
+                    calendar.add(Calendar.DAY_OF_YEAR, 7);
+                }
+
+                PendingIntent pendingRepeat = PendingIntent.getBroadcast(this, y+dayRepeat, myIntent,0);
+                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),7 * 24 * 60 * 60 * 1000, pendingRepeat);
             }
         }
 

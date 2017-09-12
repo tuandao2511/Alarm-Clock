@@ -25,5 +25,6 @@
     <string name="default_string">Default</string>
     <string name="english_game">Game</string>
     <string name="wake_up">Wake up</string>
+    <string name="set_alarm">Set Alarm</string>
 
 </resources>

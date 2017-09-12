@@ -26,14 +26,18 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="DISMISS"/>
+            android:layout_gravity="center"
+            android:text="DISMISS"
+            android:background="@color/dismissColor"/>
 
         <Button
             android:id="@+id/snooze"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="SNOOZE" />
+            android:text="SNOOZE"
+            android:background="@color/dismissColor"
+            />
     </LinearLayout>
 
 </LinearLayout>
